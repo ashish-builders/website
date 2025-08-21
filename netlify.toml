@@ -1,0 +1,6 @@
+[build]
+  publish = ".next"
+  command = "pnpm build"
+
+[build.environment]
+  NETLIFY_USE_PNPM = "true"

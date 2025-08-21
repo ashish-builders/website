@@ -1,0 +1,11 @@
+.cache
+.netlify
+/.git
+node_modules
+build
+pnpm-lock.yaml
+.next
+
+__fixtures__
+
+src/app/(payload)/admin/importMap.js

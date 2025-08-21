@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Navigation",
+  "type": "object",
+  "properties": {
+    "$schema": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "href": { "type": "string" },
+          "variant": {
+            "type": "string",
+            "enum": ["saural", "default"],
+            "description": "Optional. Use 'gradient' for special styling."
+          }
+        },
+        "required": ["label", "href"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["items"],
+  "additionalProperties": false
+}

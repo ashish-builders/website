@@ -1,0 +1,15 @@
+{
+  "$schema": "./navigation.schema.json",
+  "items": [
+    { "label": "Home", "href": "/" },
+    { "label": "About Us", "href": "/about-us" },
+    { "label": "Projects", "href": "/projects" },
+    { "label": "Blog", "href": "/blog" },
+    { "label": "Contact Us", "href": "/contact-us", "variant": "default" },
+    {
+      "label": "Saural Hills",
+      "href": "/projects/saural-villa-corbett",
+      "variant": "saural"
+    }
+  ]
+}

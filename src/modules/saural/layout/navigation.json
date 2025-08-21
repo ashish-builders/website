@@ -1,0 +1,9 @@
+{
+  "$schema": "./navigation.schema.json",
+  "items": [
+    { "label": "About Saural", "anchor": "about-saural" },
+    { "label": "Amenities", "anchor": "amenities" },
+    { "label": "Plans", "anchor": "plans" },
+    { "label": "Download Brochure", "anchor": "brochure" }
+  ]
+}
