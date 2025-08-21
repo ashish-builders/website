@@ -20,8 +20,7 @@ import { siteName } from '@/constants/site-info';
 import { getPosts } from '@/services/posts/get-posts';
 import { getCategories } from '@/services/category/get-categories';
 
-export const dynamic = 'force-static';
-export const revalidate = 600;
+export const dynamic = 'force-dynamic';
 
 const getSlugDetailsOrRedirect = React.cache((slugs?: unknown[]) => {
   const details = getSlugDetails(slugs);
