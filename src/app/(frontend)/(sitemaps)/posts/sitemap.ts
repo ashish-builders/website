@@ -1,21 +1,21 @@
-import { getPayload } from 'payload'
-import configPromise from '@payload-config'
-import { getPostsForSitemap, GetPostsForSitemapProps } from '@/services/posts/get-posts'
-import { unstable_cache as cache } from 'next/cache'
-import { getClientSideURL } from '@/lib/get-url'
-import { Media } from '@/payload-types'
-import { type MetadataRoute } from 'next'
+import { getPayload } from 'payload';
+import configPromise from '@payload-config';
+import { getPostsForSitemap, GetPostsForSitemapProps } from '@/services/posts/get-posts';
+import { unstable_cache as cache } from 'next/cache';
+import { getClientSideURL } from '@/lib/get-url';
+import { Media } from '@/payload-types';
+import { type MetadataRoute } from 'next';
 
 const getPosts = ({ limit, page }: Omit<GetPostsForSitemapProps, 'payload'>) =>
   cache(
     async () => {
-      const payload = await getPayload({ config: configPromise })
+      const payload = await getPayload({ config: configPromise });
       const posts = await getPostsForSitemap({
         limit,
         page,
         payload,
-      })
-      return posts
+      });
+      return posts;
     },
     [
       'posts-sitemap',
@@ -23,37 +23,37 @@ const getPosts = ({ limit, page }: Omit<GetPostsForSitemapProps, 'payload'>) =>
       typeof page === 'string' || typeof page === 'number' ? page.toString() : '',
     ],
     {
-      revalidate: 600,
+      revalidate: 3600,
       tags: ['posts-sitemap'],
     },
-  )
+  );
 
 type SitemapProps = {
-  id: number
-}
+  id: number;
+};
 
-const sitemapSize = 5_000
+const sitemapSize = 5_000;
 
 export async function generateSitemaps(): Promise<SitemapProps[]> {
   const posts = await getPosts({
     limit: sitemapSize,
     page: 1,
-  })()
+  })();
 
-  return Array.from({ length: posts.totalPages }, (_, i) => ({ id: i + 1 }))
+  return Array.from({ length: posts.totalPages }, (_, i) => ({ id: i + 1 }));
 }
 
 export default async function sitemap({ id: page }: SitemapProps): Promise<MetadataRoute.Sitemap> {
-  const baseURL = getClientSideURL()
+  const baseURL = getClientSideURL();
 
   const posts = await getPosts({
     limit: sitemapSize,
     page,
-  })()
+  })();
   return posts.docs.map((post) => {
-    const images: Media[] = []
+    const images: Media[] = [];
     if (post.featuredImage && typeof post.featuredImage === 'object') {
-      images.push(post.featuredImage)
+      images.push(post.featuredImage);
     }
 
     return {
@@ -65,6 +65,6 @@ export default async function sitemap({ id: page }: SitemapProps): Promise<Metad
       lastModified: new Date(post.publishedAt),
       priority: 0.3,
       url: `${baseURL}/blogs/${post.slug}`,
-    }
-  })
+    };
+  });
 }

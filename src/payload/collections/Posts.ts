@@ -2,6 +2,7 @@ import { slug } from '@/payload/fields/slug/config';
 import readingTime from 'reading-time';
 import { convertLexicalToPlaintext } from '@payloadcms/richtext-lexical/plaintext';
 import type { CollectionConfig } from 'payload';
+import { lexicalEditor, EXPERIMENTAL_TableFeature } from '@payloadcms/richtext-lexical';
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical';
 import { admin, anyone, editor } from './helpers/access';
 
@@ -67,6 +68,11 @@ const Posts: CollectionConfig = {
       type: 'upload',
     },
     {
+      editor: lexicalEditor({
+        features({ defaultFeatures }) {
+          return [...defaultFeatures, EXPERIMENTAL_TableFeature()];
+        },
+      }),
       label: 'Content',
       name: 'content',
       required: true,

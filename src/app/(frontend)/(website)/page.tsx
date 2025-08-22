@@ -15,7 +15,7 @@ import { AdSection } from '@/modules/website/home/ad-section';
 import { CustomerTestimonailsSection } from '@/modules/website/home/customer-testimonials-section';
 
 export const dynamic = 'force-static';
-export const revalidate = 600;
+export const revalidate = 3600;
 
 const baseURL = getClientSideURL();
 

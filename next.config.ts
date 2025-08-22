@@ -4,6 +4,7 @@ import { allowedRemotePatterns } from './src/image';
 
 const nextConfig: NextConfig = {
   images: {
+    minimumCacheTTL: 7 * 24 * 60 * 60, // 7 Days
     remotePatterns: allowedRemotePatterns,
   },
   webpack: (webpackConfig) => {
