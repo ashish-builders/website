@@ -311,11 +311,9 @@ const data: Project[] = [
     reraNumber: '',
     seo: {
       description:
-        'New launch with sprawling across 25 acres, the most spacious, densely green residential society, designed and developed by ABD Group',
-      keywords:
-        'Prakash Nilayam, 2 BHK, 3 BHK, Duplex, House for Sale, House for Rent, House, Ashish Builders & Developers',
-      title:
-        'Prakash Nilayam | 2 BHK | 3 BHK | Duplex | House for Sale | House - Ashish Builders & Developers',
+        'Explore Prakash Nilayam by ABD—best residential society in Kashipur with 2/3 BHK homes, duplexes & villas in a lush 25-acre green township.',
+      keywords: 'Prakash Nilayam by ABD, best residential society in Kashipur',
+      title: 'Prakash Nilayam by ABD | Best Residential Society Kashipur',
     },
     slug: slugs.prakash_nilayam,
     specificationImages: [
@@ -470,9 +468,9 @@ Each bungalow is a statement of refined living—featuring expansive layouts, su
     reraNumber: 'UKREP07250000660',
     seo: {
       description:
-        'Welcome to Vivanta, where sophistication meets serenity in the heart of Kashipur. Tucked near the tranquil surrounds of the stadium on Ramnagar Road, this enclave of ultra-luxury 5 BHK bungalows is designed for those who appreciate the finer things in life.',
-      keywords: 'Vivanta, Bungalows, Luxury Homes, Ashish Builders & Developers',
-      title: `Vivanta - Ashish Builders & Developers`,
+        'Explore Vivanta by ABD, offering premium 5 BHK bungalows in Kashipur. Luxury living redefined by Ashish Builders & Developers at a prime location.',
+      keywords: 'Vivanta by ABD, premium 5 bhk bungalows',
+      title: `Vivanta by ABD – Premium 5 BHK Bungalows in Kashipur`,
     },
     slug: slugs.vivanta,
     specificationImages: [],
@@ -705,11 +703,9 @@ This is one of the oldest and highly planned and designed residential society in
     reraNumber: '',
     seo: {
       description:
-        'Sprawling across 18 acres, Prakash City, Kashipur is the most spacious, densely green residential society, designed and developed by ABD',
-      keywords:
-        'Prakash City, 2 BHK, 3 BHK, 4 BHK, Duplex, House for Sale, House, Ashish Builders & Developers',
-      title:
-        'Prakash City | 2 BHK | 3 BHK | 4 BHK | Duplex | House for Sale | House - Ashish Builders & Developers',
+        'Explore Prakash City by ABD, the best housing society in Kashipur offering spacious 2, 3 & 4 BHK homes in a lush, green, and well-planned community.',
+      keywords: 'Prakash City by ABD, best housing society in kashipur',
+      title: 'Prakash City by ABD – Best Housing Society in Kashipur',
     },
     slug: slugs.prakash_city,
     specificationImages: [],
@@ -804,11 +800,9 @@ This is one of the oldest and highly planned and designed residential society in
     reraNumber: '',
     seo: {
       description:
-        'Prakash Harmony, is one of the best residential society in Kashipur developed by Ashish Builders and Developers.',
-      keywords:
-        'Prakash Harmony, 2 BHK, 3 BHK, Home, House for Sale, House for Rent, House, Ashish Builders & Developers',
-      title:
-        'Prakash Harmony | 2 BHK | 3 BHK | Home | House rent | Property for sale - Ashish Builders & Developers',
+        'Explore Prakash Harmony by ABD—2 & 3 BHK homes by Ashish Builders, the trusted name in Kashipur for quality living and property investment.',
+      keywords: 'prakash harmony by abd',
+      title: 'Prakash Harmony by ABD | Premium Homes in Kashipur',
     },
     slug: slugs.prakash_harmony,
     specificationImages: [],
@@ -903,11 +897,9 @@ This is one of the oldest and highly planned and designed residential society in
     reraNumber: '',
     seo: {
       description:
-        'Prakash County, is one of the best housing society having 2 BHK, 3 BHK Villas and Flats for sale in Kashipur',
-      keywords:
-        'Prakash County, 2 BHK, 3 BHK, Villas, Villa for Sale, Villa for Rent, Villa, Flat For Sale, Flat For Rent, Ashish Builders & Developers',
-      title:
-        'Prakash County | 2 BHK | 3 BHK | Villas | Flats | Home | House | Property - Ashish Builders & Developers',
+        'Explore Prakash County by ABD—premium 2 & 3 BHK villas and flats in Kashipur by Ashish Builders & Developers. Modern homes in a serene green township.',
+      keywords: 'Prakash County by ABD',
+      title: 'Prakash County by ABD | 2 & 3 BHK Villas & Flats in Kashipur',
     },
     slug: slugs.prakash_county,
     specificationImages: [],
@@ -993,11 +985,9 @@ This is one of the oldest and highly planned and designed residential society in
     reraNumber: '',
     seo: {
       description:
-        'Prakash Residency is one of the oldest and most beautiful residential society having 2 BHK, 3 BHK luxurious homes for sale in Kashipur',
-      keywords:
-        'Prakash Residency, 2 BHK, 3 BHK, Villa, Flat, Home for Sale, Home for Rent, House for Sale, House for Rent, House, Ashish Builders & Developers',
-      title:
-        'Prakash Residency | 2 BHK | 3 BHK | Villa | Flat | Home | House | Property - Ashish Builders & Developers',
+        'Explore Prakash Residency By ABD – premium 2 & 3 BHK villas and flats in Kashipur by Ashish Builders & Developers. A trusted name in modern living.',
+      keywords: 'Prakash Residency By ABD',
+      title: 'Prakash Residency By ABD | 2 & 3 BHK Villas & Flats Kashipur',
     },
     slug: slugs.prakash_residency,
     specificationImages: [],
@@ -1123,10 +1113,9 @@ Crafted with wooden flooring, vintage-inspired bar counters, and sun-drenched ba
     pincode: '263667',
     reraNumber: '',
     seo: {
-      description:
-        'Welcome to The Saural Villa Corbett by ABD, where the serenity of the wilderness meets the elegance of curated living.',
-      keywords: 'Saural Villa Corbett, Villas, Luxury Homes, Ashish Builders & Developers',
-      title: `Saural Villa Corbett - Ashish Builders & Developers`,
+      description: `Explore The Saural Villa Corbett by ABD—luxurious 3 and 4 BHK villas near Jim Corbett, blending modern comfort with nature's serenity.`,
+      keywords: 'The Saural Villa Corbett by ABD, 3 and 4 BHK villas',
+      title: `The Saural Villa Corbett by ABD | 3 & 4 BHK Villas`,
     },
     slug: slugs.saural_villa_corbett,
     specificationImages: [],

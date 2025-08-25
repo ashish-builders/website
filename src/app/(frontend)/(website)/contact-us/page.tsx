@@ -23,7 +23,7 @@ export const metadata = createMetadata({
       'en-IN': `${baseURL}/contact-us`,
     },
   },
-  description: `Contact ${siteName} for premium real estate, apartments, villas, and commercial spaces in ${addressLocality}, ${addressRegion}. Get in touch with our team today!`,
+  description: `Contact Ashish Builders & Developers – the best real estate builder in Kashipur for quality 2 BHK, 3 BHK, 4 BHK, and duplex homes for sale or rent.`,
   keywords: [
     siteName,
     alternateName,
@@ -39,7 +39,7 @@ export const metadata = createMetadata({
     'Email',
     'Location',
   ],
-  title: `Contact Us | ${siteName} - Real Estate in ${addressLocality}, ${addressRegion}`,
+  title: `Contact Us | Best Real Estate Builder in Kashipur`,
 });
 export default function Page() {
   return (

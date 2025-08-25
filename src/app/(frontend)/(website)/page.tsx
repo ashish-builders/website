@@ -1,6 +1,5 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import { createMetadata, OrganizationJsonLd } from '@/lib/seo';
-import { addressLocality, addressRegion } from '@/constants/contact-constants';
 import * as React from 'react';
 import { getClientSideURL } from '@/lib/get-url';
 import { alternateName, siteName } from '@/constants/site-info';
@@ -26,7 +25,7 @@ export const metadata = createMetadata({
       'en-IN': baseURL,
     },
   },
-  description: `Discover premium apartments, luxury villas, and commercial spaces in ${addressLocality} by ${siteName}. Over 20 years of trusted real estate development in ${addressRegion} with quality construction and timely delivery.`,
+  description: `"ABD Group, the best real estate developer in Uttarakhand, offers 2BHK, 3BHK, duplex, villas, bungalows & apartments for sale and rent across prime locations.`,
   keywords: [
     siteName,
     alternateName,
@@ -45,7 +44,7 @@ export const metadata = createMetadata({
     'Luxury Villas Kashipur',
     'Luxury Apartments Kashipur',
   ],
-  title: `Most Trusted Builder in ${addressLocality}, ${addressRegion} | ${siteName}`,
+  title: `Best Real Estate Developer in Uttarakhand | ABD Group`,
 });
 
 export default async function Page() {

@@ -22,7 +22,7 @@ export const metadata = createMetadata({
       'en-IN': `${baseURL}/about-us`,
     },
   },
-  description: `Learn about ${siteName}, a leading real estate developer in ${addressLocality}, ${addressRegion}. With over 20 years of experience, we specialize in premium residential and commercial properties.`,
+  description: `Explore 2, 3 & 4 BHK villas & flats by ABD Group—your trusted real estate developer in Kashipur with 20+ years of excellence in quality living.`,
   keywords: [
     siteName,
     alternateName,
@@ -34,7 +34,7 @@ export const metadata = createMetadata({
     'Residential Projects',
     'Commercial Properties',
   ],
-  title: `About Us | ${siteName}`,
+  title: `Trusted Real Estate Developer in Kashipur | ABD Group`,
 });
 export default async function Page() {
   return (

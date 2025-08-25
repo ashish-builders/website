@@ -145,8 +145,8 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
     description =
       firstPostTag?.meta?.description || `Explore articles tagged with ${firstPostTag?.name}.`;
   } else {
-    title = `Blog | ${siteName}`;
-    description = `Explore our blog for the latest articles on real estate, property development, and market trends in ${siteName}.`;
+    title = `Blog | Insights from Top Builder in Uttarakhand - ABD Group`;
+    description = `Explore our blog for expert insights, trends, and tips from the top builder in Uttarakhand—Ashish Builders and Developers. Stay informed and inspired.`;
   }
 
   return createMetadata({
