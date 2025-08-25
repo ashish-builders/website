@@ -37,28 +37,6 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
-    livePreview: {
-      breakpoints: [
-        {
-          height: 667,
-          label: 'Mobile',
-          name: 'mobile',
-          width: 375,
-        },
-        {
-          height: 1024,
-          label: 'Tablet',
-          name: 'tablet',
-          width: 768,
-        },
-        {
-          height: 900,
-          label: 'Desktop',
-          name: 'desktop',
-          width: 1440,
-        },
-      ],
-    },
     meta: {
       icons: '/favicon.ico',
       titleSuffix: `| ${siteName}`,

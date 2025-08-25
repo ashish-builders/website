@@ -12,19 +12,23 @@ export type GetPostProps = {
 
 export async function getPosts(props: GetPostProps) {
   const { categories, limit, page, payload, req, search, tags } = props;
+
   // Build where clause
   const where: Where = {};
   if (categories && categories.length > 0) {
-    where.category = { in: categories };
+    // Search categories by slug
+    where['category.slug'] = { in: categories };
   }
   if (tags && tags.length > 0) {
-    where.tags = { in: tags };
+    // Search tags by slug
+    where['tags.slug'] = { in: tags };
   }
   if (search && search.trim().length > 0) {
     // Add a text search for title or excerpt fields (case-insensitive, partial match)
     where.or = [{ title: { like: search } }, { excerpt: { like: search } }];
   }
-  return payload.find({
+
+  const response = await payload.find({
     collection: 'posts',
     limit,
     overrideAccess: false,
@@ -63,6 +67,8 @@ export async function getPosts(props: GetPostProps) {
     sort: '-publishedAt',
     where,
   });
+
+  return response;
 }
 
 export type GetPostsForSitemapProps = {

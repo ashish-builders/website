@@ -116,7 +116,7 @@ export default async function NotFound() {
                   </Button>
                   <Typography color="text.secondary" variant="body2">
                     The page you are looking for does not exist. Please check the URL or{' '}
-                    <Link color="tertiary" fontWeight="medium" href="/contact" underline="hover">
+                    <Link color="tertiary" fontWeight="medium" href="/contact-us" underline="hover">
                       contact us
                     </Link>{' '}
                     if you need assistance.

@@ -12,17 +12,17 @@ import Skeleton from '@mui/material/Skeleton';
 import Link from 'next/link';
 import Image from 'next/image';
 
-type Upload = {
-  altText?: null | string;
-  publicUrl: string;
-  uploadType: string;
-};
-
 type Post = {
+  featuredImage?:
+    | null
+    | string
+    | {
+        alt?: null | string;
+        url?: null | string;
+      };
   id: string;
   slug: string;
   title: string;
-  uploads?: Upload[];
 };
 
 export type BlogLatestPostsProps = {
@@ -84,7 +84,6 @@ export function BlogLatestPosts({ isLoading, posts }: BlogLatestPostsProps) {
       >
         <List sx={{ pb: 0 }} dense>
           {posts.map((post) => {
-            const image = post.uploads?.find?.((upload) => upload.uploadType === 'FEATURED_IMAGE');
             return (
               <ListItem
                 itemProp="hasPart"
@@ -105,7 +104,9 @@ export function BlogLatestPosts({ isLoading, posts }: BlogLatestPostsProps) {
                   prefetch={false}
                   disableGutters
                 >
-                  {image?.publicUrl && (
+                  {post?.featuredImage &&
+                  typeof post.featuredImage !== 'string' &&
+                  post.featuredImage.url ? (
                     <ListItemIcon
                       sx={{
                         minWidth: 68,
@@ -118,15 +119,15 @@ export function BlogLatestPosts({ isLoading, posts }: BlogLatestPostsProps) {
                           objectFit: 'cover',
                           width: 56,
                         }}
-                        alt={image.altText || `Featured image for ${post.title}`}
+                        alt={post.featuredImage.alt || `Featured image for ${post.title}`}
                         height={120}
                         itemProp="image"
                         quality={100}
-                        src={image.publicUrl}
+                        src={post.featuredImage.url}
                         width={120}
                       />
                     </ListItemIcon>
-                  )}
+                  ) : null}
                   <ListItemText
                     slotProps={{
                       primary: {

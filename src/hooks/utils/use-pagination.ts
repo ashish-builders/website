@@ -10,16 +10,21 @@ export type UsePaginationOptions = {
   onPageSizeChange?: (pageSize: number) => void;
   pageIndex?: number;
   pageSize?: number;
+  shallow?: boolean;
 };
 
 export function usePagination(options: UsePaginationOptions) {
   const [pageIndexQueryState, setPageIndexQueryState] = useQueryState(
     'page',
-    parseAsInteger.withDefault(options.defaultPageIndex || 1),
+    parseAsInteger.withDefault(options.defaultPageIndex || 1).withOptions({
+      shallow: options.shallow,
+    }),
   );
   const [pageSizeQueryState, setPageSizeQueryState] = useQueryState(
     'pageSize',
-    parseAsInteger.withDefault(options.defaultPageSize || 25),
+    parseAsInteger.withDefault(options.defaultPageSize || 25).withOptions({
+      shallow: false,
+    }),
   );
   const [pageIndex, setPageIndex] = useControlled<number>({
     controlled: options.pageIndex,

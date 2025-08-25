@@ -4,7 +4,7 @@ import { convertLexicalToPlaintext } from '@payloadcms/richtext-lexical/plaintex
 import type { CollectionConfig } from 'payload';
 import { lexicalEditor, EXPERIMENTAL_TableFeature } from '@payloadcms/richtext-lexical';
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical';
-import { admin, anyone, editor } from './helpers/access';
+import { admin, editor } from './helpers/access';
 
 type GetPlainTextProps = {
   data: SerializedEditorState;
@@ -18,12 +18,45 @@ const Posts: CollectionConfig = {
   access: {
     create: editor,
     delete: admin,
-    read: anyone,
+    read: ({ req }) => {
+      if (req.user) {
+        return true;
+      }
+
+      return {
+        _status: {
+          equals: 'published',
+        },
+      };
+    },
     update: editor,
   },
   admin: {
     defaultColumns: ['title', 'author', 'publishedAt', 'category', 'tags'],
     group: 'Blog',
+    livePreview: {
+      breakpoints: [
+        {
+          height: 667,
+          label: 'Mobile',
+          name: 'mobile',
+          width: 375,
+        },
+        {
+          height: 1024,
+          label: 'Tablet',
+          name: 'tablet',
+          width: 768,
+        },
+        {
+          height: 900,
+          label: 'Desktop',
+          name: 'desktop',
+          width: 1440,
+        },
+      ],
+      url: ({ data, req }) => `${req.protocol}//${req.host}/blog/${data.slug}`,
+    },
     useAsTitle: 'title',
   },
   defaultSort: ['-publishedAt'],

@@ -1,7 +1,7 @@
 'use client';
 
 import { notFound, useParams } from 'next/navigation';
-import { usePagination } from '@/hooks/utils/use-pagination';
+import { useRouter } from '@bprogress/next';
 import { useSearch } from '@/hooks/utils/use-search';
 import * as React from 'react';
 import Box from '@mui/material/Box';
@@ -19,7 +19,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import ArticleIcon from '@mui/icons-material/Article';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
-import jump from 'jump.js';
 import { HoverScale } from '@/components/motion/hover-scale/hover-scale';
 import { motion } from 'motion/react';
 import { PostMeta } from './post-meta';
@@ -48,11 +47,15 @@ export type BlogPost = {
 
 export type BlogArticlesProps = {
   isLoading?: boolean;
+  page?: number;
   posts?: BlogPost[];
+  totalPages?: number;
 };
 
 export function BlogArticles(props: BlogArticlesProps) {
-  const { isLoading = false, posts = [] } = props;
+  const { isLoading = false, page = 1, posts = [], totalPages } = props;
+
+  const router = useRouter();
 
   // Ref for the first post card
   const firstPostRef = React.useRef<null | React.ComponentRef<'article'>>(null);
@@ -63,16 +66,10 @@ export function BlogArticles(props: BlogArticlesProps) {
     () => getSlugDetails(params.slug),
     [params.slug],
   );
-  const pagination = usePagination({
-    defaultPageSize: 10,
-    enableNuqs: true,
-  });
+
   const search = useSearch({
     enableNuqs: true,
   });
-
-  // ─── Calculation ────────────────────────────────────────────────────────────
-  const totalPages = posts.length > 0 ? Math.ceil(posts.length / pagination.pageSize) : 1;
 
   const breadcrumbItems = React.useMemo<BreadcrumbItem[]>(() => {
     const items: BreadcrumbItem[] = [
@@ -138,13 +135,13 @@ export function BlogArticles(props: BlogArticlesProps) {
 
   // ─── Callbacks ───────────────────────────────────────────────────────────────
   const handlePageChange = (_: React.ChangeEvent<unknown>, value: number) => {
-    pagination.onPageChange(value);
-    if (firstPostRef.current) {
-      jump(firstPostRef.current, {
-        duration: 300,
-        offset: -150,
-      });
+    let basePath = '/blog';
+    if (postType === PostType.CATEGORY && typeof post === 'string') {
+      basePath = `/blog/category/${post}`;
+    } else if (postType === PostType.TAG && typeof post === 'string') {
+      basePath = `/blog/tag/${post}`;
     }
+    router.push(value === 1 ? basePath : `${basePath}/page/${value}`);
   };
 
   if (is404) {
@@ -289,14 +286,14 @@ export function BlogArticles(props: BlogArticlesProps) {
           );
         })}
       </Stack>
-      {totalPages > 1 ? (
+      {totalPages && totalPages > 1 ? (
         <Box display="flex" justifyContent="center" mt={4}>
           <Pagination
             aria-label="Pagination navigation"
             color="tertiary"
             count={totalPages}
             onChange={handlePageChange}
-            page={pagination.pageIndex}
+            page={page}
             role="navigation"
             showFirstButton
             showLastButton

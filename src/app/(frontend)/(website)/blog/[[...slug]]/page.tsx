@@ -11,7 +11,7 @@ import Container from '@mui/material/Container';
 import dayjs from 'dayjs';
 import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
-import { createLoader, parseAsInteger, parseAsString, type SearchParams } from 'nuqs/server';
+import { createLoader, parseAsString, type SearchParams } from 'nuqs/server';
 import * as React from 'react';
 import { getPayload } from 'payload';
 import configPromise from '@payload-config';
@@ -29,8 +29,6 @@ const getSlugDetailsOrRedirect = React.cache((slugs?: unknown[]) => {
 });
 
 const pageSearchParams = {
-  page: parseAsInteger.withDefault(1),
-  pageSize: parseAsInteger.withDefault(25),
   search: parseAsString
     .withOptions({
       throttleMs: 300,
@@ -40,6 +38,8 @@ const pageSearchParams = {
 
 const loadSearchParams = createLoader(pageSearchParams);
 
+const pageSize = 5;
+
 export type PageProps = {
   params: Promise<{ slug?: string[] }>;
   searchParams: Promise<SearchParams>;
@@ -48,8 +48,8 @@ export type PageProps = {
 export async function generateMetadata(props: PageProps): Promise<Metadata> {
   const { params, searchParams } = props;
   const pageParams = await params;
-  const { page, pageSize, search } = await loadSearchParams(searchParams);
-  const { isSinglePost, post, postType } = getSlugDetailsOrRedirect(pageParams.slug);
+  const { search } = await loadSearchParams(searchParams);
+  const { isSinglePost, page, post, postType } = getSlugDetailsOrRedirect(pageParams.slug);
   const payload = await getPayload({ config: configPromise });
 
   const baseURL = getClientSideURL();
@@ -175,7 +175,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
 export default async function Page(props: PageProps) {
   const { params, searchParams } = props;
   const pageParams = await params;
-  const { isSinglePost, post, postType } = getSlugDetailsOrRedirect(pageParams.slug);
+  const { isSinglePost, page, post, postType } = getSlugDetailsOrRedirect(pageParams.slug);
 
   const payload = await getPayload({ config: configPromise });
 
@@ -200,7 +200,7 @@ export default async function Page(props: PageProps) {
       </React.Fragment>
     );
   }
-  const { page, pageSize, search } = await loadSearchParams(searchParams);
+  const { search } = await loadSearchParams(searchParams);
 
   const [posts, recentPosts, popluarCategories] = await Promise.all([
     getPosts({
@@ -234,7 +234,7 @@ export default async function Page(props: PageProps) {
           disableSidebar={false}
           sidebar={<BlogSidebar categories={popluarCategories} posts={recentPosts.docs} />}
         >
-          <BlogArticles posts={posts.docs} />
+          <BlogArticles page={page} posts={posts.docs} totalPages={posts.totalPages} />
         </BlogLayout>
       </Container>
     </React.Fragment>
