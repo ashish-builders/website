@@ -38,8 +38,27 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     meta: {
+      description: `Admin panel for managing content, media, and site settings for ${siteName}.`,
       icons: '/favicon.ico',
+      openGraph: {
+        description: `Admin panel for managing content, media, and site settings for ${siteName}.`,
+        siteName,
+        title: `Admin Panel | ${siteName}`,
+      },
+      robots: {
+        follow: false,
+        index: false,
+        indexifembedded: false,
+        noarchive: true,
+        noimageindex: true,
+        nosnippet: true,
+        notranslate: true,
+      },
       titleSuffix: `| ${siteName}`,
+      twitter: {
+        description: `Admin panel for managing content, media, and site settings for ${siteName}.`,
+        title: `Admin Panel | ${siteName}`,
+      },
     },
     user: Users.slug,
   },

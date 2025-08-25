@@ -3,6 +3,7 @@ import type { SEOPluginConfig } from '@payloadcms/plugin-seo/types';
 import PostCategories from '@/payload/collections/PostCategories';
 import PostTags from '@/payload/collections/PostTags';
 import Posts from '@/payload/collections/Posts';
+import { siteName } from '@/constants/site-info';
 
 export default function seoPluginConfig(): SEOPluginConfig {
   return {
@@ -16,9 +17,9 @@ export default function seoPluginConfig(): SEOPluginConfig {
     generateImage: ({ doc }) => doc?.featuredImage,
     generateTitle: ({ collectionSlug, doc }) => {
       if (collectionSlug === PostTags.slug || collectionSlug === PostCategories.slug) {
-        return doc.name;
+        return doc.name ? `${doc.name} | ${siteName}` : '';
       }
-      return doc.title;
+      return doc.title ? `${doc.title} | ${siteName}` : '';
     },
     generateURL: ({ collectionSlug, doc }) => {
       const baseURl = getClientSideURL();
