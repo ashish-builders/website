@@ -3,6 +3,7 @@ import { type Metadata } from 'next';
 import { Figtree, Gilda_Display, Playfair } from 'next/font/google';
 import cssVariables from '@/lib/css-variables';
 import oklchToHex from '@/lib/color-manipulation/oklch-to-hext';
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import Providers from './providers';
 import './style.css';
 
@@ -50,6 +51,12 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           rel="mask-icon"
         />
         <meta content={oklchToHex(cssVariables.colors.primary)} name="theme-color" />
+        {typeof process.env.NEXT_PUBLIC_GTM_ID === 'string' && process.env.NEXT_PUBLIC_GTM_ID ? (
+          <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID as string} />
+        ) : null}
+        {typeof process.env.NEXT_PUBLIC_GA_ID === 'string' && process.env.NEXT_PUBLIC_GA_ID ? (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        ) : null}
       </head>
       <body className={[primary.variable, saural.variable, secondary.variable].join(' ')}>
         <Providers>{children}</Providers>

@@ -58,7 +58,7 @@ const getBannerUri = (options: {
 
   const imageProps: Omit<ImageProps, 'src'> = {
     alt: options.alt,
-    'aria-hidden': true,
+    fetchPriority: options.priority ? 'high' : 'auto',
     fill: true,
     priority: options.priority,
     quality: 100,
