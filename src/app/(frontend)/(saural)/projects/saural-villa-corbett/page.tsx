@@ -16,6 +16,7 @@ import { getClientSideURL } from '@/lib/get-url';
 import JsonLD from '@/components/piplup-jsrepo/json-ld';
 import { notFound } from 'next/navigation';
 import projects from '@/data/projects';
+import { LogoFixedButton } from '@/modules/saural/logo-fixed-button';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -111,6 +112,7 @@ export default async function Page() {
       <EnquireNowDialogProvider>
         <EnquireNowFixedButton />
       </EnquireNowDialogProvider>
+      <LogoFixedButton />
     </React.Fragment>
   );
 }
