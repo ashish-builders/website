@@ -65,7 +65,7 @@ export function ProjectsList() {
                         <ProjectCard
                           address={project.address}
                           blurDataUrl={getBlurURL(featuredImage) || null}
-                          district={location?.District || ''}
+                          city={location?.City || ''}
                           featuredImage={featuredImage || null}
                           name={project.name}
                           pincode={location?.Pincode || ''}

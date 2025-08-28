@@ -9,7 +9,7 @@ import { HoverScale } from '@/components/motion/hover-scale/hover-scale';
 type ProjectCardProps = {
   address: string;
   blurDataUrl?: null | string;
-  district: string;
+  city: string;
   featuredImage?: null | string;
   name: string;
   pincode: string;
@@ -18,7 +18,7 @@ type ProjectCardProps = {
 };
 
 export function ProjectCard(props: ProjectCardProps) {
-  const { address, blurDataUrl, district, featuredImage, name, pincode, slug, state } = props;
+  const { address, blurDataUrl, city, featuredImage, name, pincode, slug, state } = props;
   return (
     <Box
       aria-label={`Project card for ${name}`}
@@ -56,7 +56,7 @@ export function ProjectCard(props: ProjectCardProps) {
         sx={{ mb: 2 }}
         variant="body1"
       >
-        {`${[address, district, state].filter(Boolean).join(', ')} - ${pincode}`}
+        {`${[address, city, state].filter(Boolean).join(', ')} - ${pincode}`}
       </Typography>
       <Button
         aria-label={`View details for ${name}`}
