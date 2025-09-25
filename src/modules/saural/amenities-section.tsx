@@ -34,7 +34,7 @@ export function AmenitiesSection(props: AmenitiesProps) {
   }
 
   return (
-    <Box sx={{ pb: 8, pt: 2 }}>
+    <Box id="amenities" sx={{ pb: 8, pt: 2, scrollMarginTop: '100px' }}>
       <Container maxWidth="md">
         <Fade>
           <Stack

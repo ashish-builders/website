@@ -33,6 +33,7 @@ export const WhenToBuy = {
 
 export const leadFormSchema = z.object({
   email: z.string().email('Enter a valid email address'),
+  iAgree: z.boolean().refine((val) => !!val, { message: 'You must agree before submitting' }),
   name: z.string().min(2, 'Name is required'),
   phone: z
     .string()
@@ -47,6 +48,7 @@ export type LeadFormValues = z.infer<typeof leadFormSchema>;
 export function getLeadFormDefaultValues(): LeadFormValues {
   return {
     email: '',
+    iAgree: false,
     name: '',
     phone: '',
     propertyType: '2bhk-villa',

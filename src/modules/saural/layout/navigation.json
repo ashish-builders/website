@@ -3,7 +3,7 @@
   "items": [
     { "label": "About Saural", "anchor": "about-saural" },
     { "label": "Amenities", "anchor": "amenities" },
-    { "label": "Plans", "anchor": "plans" },
+    { "label": "Plans", "anchor": "floor-plans" },
     { "label": "Download Brochure", "anchor": "brochure" }
   ]
 }

@@ -11,11 +11,17 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import { darken, useTheme } from '@mui/material/styles';
 import { Image } from '@/components/image/image';
-import { MuiButtonElement, MuiTextFieldElement } from '@piplup/rhf-adapters/mui-material';
+import {
+  MuiButtonElement,
+  MuiTextFieldElement,
+  MuiCheckboxElement,
+  MuiFormHelperTextElement,
+} from '@piplup/rhf-adapters/mui-material';
 import { type Control } from 'react-hook-form';
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Alert from '@mui/material/Alert';
+import { FormControlLabel } from '@mui/material';
 import { PropertyType, WhenToBuy, type LeadFormValues } from '../use-lead-form';
 
 type EnquireNowDialogProps = {
@@ -227,7 +233,39 @@ export function EnquireNowDialog(props: EnquireNowDialogProps) {
                     </MenuItem>
                   ))}
                 </MuiTextFieldElement>
+                <div>
+                  <FormControlLabel
+                    control={
+                      <MuiCheckboxElement
+                        slotProps={{
+                          input: {
+                            'aria-label': 'checkbox',
+                          },
+                        }}
+                        transform={{
+                          input: (value) => (value ? 'true' : 'false'),
+                          output: (event) => {
+                            return !!event?.target.checked;
+                          },
+                        }}
+                        checked={(value) => value === 'true'}
+                        control={control}
+                        name="iAgree"
+                        size="small"
+                        value="false"
+                      />
+                    }
+                    sx={{
+                      '& span': {
+                        fontSize: '0.75rem',
+                      },
+                    }}
+                    label="I am giving my consent to receive calls and updates through SMS/Email & WhatsApp"
+                  />
+                  <MuiFormHelperTextElement control={control} name="iAgree" />
+                </div>
               </Stack>
+
               <MuiButtonElement
                 aria-label="Submit Enquiry"
                 color="tertiary"

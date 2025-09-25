@@ -2,7 +2,12 @@
 
 import Stack from '@mui/material/Stack';
 import MenuItem from '@mui/material/MenuItem';
-import { MuiTextFieldElement, MuiButtonElement } from '@piplup/rhf-adapters/mui-material';
+import {
+  MuiTextFieldElement,
+  MuiButtonElement,
+  MuiCheckboxElement,
+  MuiFormHelperTextElement,
+} from '@piplup/rhf-adapters/mui-material';
 import * as React from 'react';
 import {
   useLeadForm,
@@ -14,6 +19,7 @@ import {
 import { useSearchParams } from 'next/navigation';
 import toast from 'react-hot-toast';
 import useSaveLeadFormService from '@/services/form/save-lead-form-service';
+import { FormControlLabel } from '@mui/material';
 import { LeadFormSuccessDialog } from './lead-form-success-dialog';
 
 export function LeadForm() {
@@ -134,6 +140,32 @@ export function LeadForm() {
             </MenuItem>
           ))}
         </MuiTextFieldElement>
+        <div>
+          <FormControlLabel
+            control={
+              <MuiCheckboxElement
+                slotProps={{
+                  input: {
+                    'aria-label': 'checkbox',
+                  },
+                }}
+                transform={{
+                  input: (value) => (value ? 'true' : 'false'),
+                  output: (event) => {
+                    return !!event?.target.checked;
+                  },
+                }}
+                checked={(value) => value === 'true'}
+                control={control}
+                name="iAgree"
+                value="false"
+                required
+              />
+            }
+            label="I am giving my consent to receive calls and updates through SMS/Email & WhatsApp"
+          />
+          <MuiFormHelperTextElement control={control} name="iAgree" />
+        </div>
         <MuiButtonElement
           aria-label="Send Message"
           color="tertiary"

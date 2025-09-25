@@ -3,7 +3,6 @@ import { BlogArticles } from '@/modules/website/blog/blog-articles';
 import { BlogLayout } from '@/modules/website/blog/blog-layout';
 import { BlogSidebar } from '@/modules/website/blog/blog-sidebar';
 import { BlogSingle } from '@/modules/website/blog/blog-single';
-import { HeroSection } from '@/modules/website/blog/hero-section';
 import { PostType } from '@/modules/website/blog/types';
 import { getSlugDetails } from '@/modules/website/blog/utils';
 import { getSinglePost, getSinglePostSeo } from '@/services/posts/get-single-post';
@@ -190,14 +189,11 @@ export default async function Page(props: PageProps) {
     });
 
     return (
-      <React.Fragment>
-        <HeroSection />
-        <Container maxWidth="lg" sx={{ py: 4 }}>
-          <BlogLayout sidebar={null} disableSidebar>
-            <BlogSingle post={response} />
-          </BlogLayout>
-        </Container>
-      </React.Fragment>
+      <Container maxWidth="lg" sx={{ py: 4 }}>
+        <BlogLayout sidebar={null} disableSidebar>
+          <BlogSingle post={response} />
+        </BlogLayout>
+      </Container>
     );
   }
   const { search } = await loadSearchParams(searchParams);
@@ -227,16 +223,13 @@ export default async function Page(props: PageProps) {
   ]);
 
   return (
-    <React.Fragment>
-      <HeroSection />
-      <Container maxWidth="lg" sx={{ py: 4 }}>
-        <BlogLayout
-          disableSidebar={false}
-          sidebar={<BlogSidebar categories={popluarCategories} posts={recentPosts.docs} />}
-        >
-          <BlogArticles page={page} posts={posts.docs} totalPages={posts.totalPages} />
-        </BlogLayout>
-      </Container>
-    </React.Fragment>
+    <Container maxWidth="lg" sx={{ py: 4 }}>
+      <BlogLayout
+        disableSidebar={false}
+        sidebar={<BlogSidebar categories={popluarCategories} posts={recentPosts.docs} />}
+      >
+        <BlogArticles page={page} posts={posts.docs} totalPages={posts.totalPages} />
+      </BlogLayout>
+    </Container>
   );
 }

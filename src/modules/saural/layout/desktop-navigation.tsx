@@ -58,11 +58,7 @@ export function DesktopNavigation(props: DesktopNavigationProps) {
             sx={{
               display: 'flex',
               flexDirection: 'row',
-              flexGrow: 1,
               gap: 2,
-              justifyContent: 'center',
-              position: 'relative',
-              right: -16,
             }}
           >
             {navigation.map((item, index) => (

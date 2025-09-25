@@ -43,7 +43,7 @@ export function FloorPlanSection(props: FloorPlanSectionProps) {
     return null;
   }
   return (
-    <Box sx={{ pb: 8, pt: 12 }}>
+    <Box id="floor-plans" sx={{ pb: 8, pt: 12, scrollMarginTop: '100px' }}>
       <Container maxWidth="lg">
         <Typography
           sx={{
