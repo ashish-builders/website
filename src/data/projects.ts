@@ -95,12 +95,6 @@ const data: Project[] = [
       },
       {
         height: 800,
-        image: '/assets/projects/amenities/prakash-nilayam/cricket-net.webp',
-        title: 'Cricket Net',
-        width: 1200,
-      },
-      {
-        height: 800,
         image: '/assets/projects/amenities/prakash-nilayam/gym.webp',
         title: 'Gym',
         width: 1200,
@@ -114,7 +108,7 @@ const data: Project[] = [
       {
         height: 1024,
         image: '/assets/projects/amenities/prakash-nilayam/jogging-tracks.webp',
-        title: '/assets/projects/amenities/prakash-nilayam/Jogging Tracks',
+        title: 'Jogging Tracks',
         width: 1536,
       },
       {
