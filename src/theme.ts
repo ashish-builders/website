@@ -148,6 +148,7 @@ const theme = createTheme({
     gradient: 'linear-gradient(90deg, #F8EEBC 0%, #CA9E3F 100%)',
     mode: 'light',
     quaternary: {
+      contrastText: '#ffffff',
       light: '#ecd48c',
       main: '#a88343',
     },
