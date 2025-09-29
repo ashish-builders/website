@@ -30,6 +30,7 @@ declare module '@mui/material/styles' {
   interface Palette {
     gradient: string;
     quaternary: {
+      contrastText: string;
       light: string;
       main: string;
     };
