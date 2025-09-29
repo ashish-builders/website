@@ -5,6 +5,7 @@ declare module '@mui/material/styles' {
   interface PaletteOptions {
     gradient: string;
     quaternary: {
+      contrastText: string;
       light: string;
       main: string;
     };
