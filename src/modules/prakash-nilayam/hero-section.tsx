@@ -124,7 +124,7 @@ export function HeroSection() {
                         pb: 2,
                       }}
                     >
-                      Duplex 2, 3, & 4 BHK Duplex Homes & Villas in Kashipur
+                      Premium 2, 3, & 4 BHK Duplex Homes & Villas in Kashipur
                     </Typography>
                     <iframe
                       height={400}
