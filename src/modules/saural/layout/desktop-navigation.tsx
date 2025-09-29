@@ -65,7 +65,16 @@ export function DesktopNavigation(props: DesktopNavigationProps) {
               <ListItem key={index} sx={{ width: 'fit-content' }} disableGutters disablePadding>
                 <ListItemButton
                   onClick={() => {
-                    if (!item.anchor || typeof document === 'undefined') {
+                    if (typeof document === 'undefined') {
+                      return;
+                    }
+
+                    if (item.href) {
+                      window.open(item.href, '_blank');
+                      return;
+                    }
+
+                    if (!item.anchor) {
                       return;
                     }
                     const element = document.getElementById(item.anchor);

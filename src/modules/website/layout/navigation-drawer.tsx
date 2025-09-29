@@ -13,14 +13,18 @@ import List from '@mui/material/List';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { MobileNavItem } from './mobile-nav-item';
-import navigationConfig from './navigation.json';
 
 interface NavigationDrawerProps {
+  navigation: {
+    href: string;
+    label: string;
+    variant?: string;
+  }[];
   onClose: () => void;
   open: boolean;
 }
 
-export function NavigationDrawer({ onClose, open }: NavigationDrawerProps) {
+export function NavigationDrawer({ navigation, onClose, open }: NavigationDrawerProps) {
   const drawerTitleId = 'navigation-drawer-title';
   const drawerDescId = 'navigation-drawer-desc';
   const theme = useTheme();
@@ -67,7 +71,7 @@ export function NavigationDrawer({ onClose, open }: NavigationDrawerProps) {
         {lgDown ? (
           <Box sx={{ display: { lg: 'none', xs: 'block' }, mb: 2 }}>
             <List aria-label="Main navigation">
-              {navigationConfig.items.map(({ href, label, variant }) => (
+              {navigation.map(({ href, label, variant }) => (
                 <MobileNavItem
                   href={href}
                   key={href}

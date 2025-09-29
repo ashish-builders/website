@@ -10,11 +10,19 @@ import { Link } from '@/components/link/link';
 import { Container, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import StretchedHamburger from '@/components/icons/streched-hamburger';
-import navigationConfig from './navigation.json';
 import { DesktopNavItem } from './desktop-nav-item';
 import { NavigationDrawer } from './navigation-drawer';
 
-export function Header() {
+type HeaderProps = {
+  disableLogoNavigation?: boolean;
+  navigation: {
+    href: string;
+    label: string;
+    variant?: string;
+  }[];
+};
+
+export function Header({ disableLogoNavigation = false, navigation }: HeaderProps) {
   const theme = useTheme();
   const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
 
@@ -24,6 +32,12 @@ export function Header() {
   // ─── Callbacks ───────────────────────────────────────────────────────────────
   const handleDrawerOpen = () => setDrawerOpen(true);
   const handleDrawerClose = () => setDrawerOpen(false);
+
+  const logo = (
+    <Box sx={{ alignItems: 'center', display: 'flex' }}>
+      <Logo height="59" width="124" />
+    </Box>
+  );
 
   return (
     <AppBar
@@ -45,11 +59,13 @@ export function Header() {
             minHeight: 90,
           }}
         >
-          <Link href="/" sx={{ alignItems: 'center', display: 'flex' }}>
-            <Box sx={{ alignItems: 'center', display: 'flex' }}>
-              <Logo height="59" width="124" />
-            </Box>
-          </Link>
+          {disableLogoNavigation ? (
+            logo
+          ) : (
+            <Link href="/" sx={{ alignItems: 'center', display: 'flex' }}>
+              {logo}
+            </Link>
+          )}
           <Box
             sx={{
               alignItems: 'center',
@@ -66,7 +82,7 @@ export function Header() {
                   gap: 3,
                 }}
               >
-                {navigationConfig.items.map(({ href, label, variant }) => (
+                {navigation.map(({ href, label, variant }) => (
                   <DesktopNavItem href={href} key={href} label={label} variant={variant} />
                 ))}
               </Box>
@@ -81,7 +97,7 @@ export function Header() {
           </Box>
         </Toolbar>
       </Container>
-      <NavigationDrawer onClose={handleDrawerClose} open={drawerOpen} />
+      <NavigationDrawer navigation={navigation} onClose={handleDrawerClose} open={drawerOpen} />
     </AppBar>
   );
 }

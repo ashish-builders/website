@@ -4,6 +4,9 @@
     { "label": "About Saural", "anchor": "about-saural" },
     { "label": "Amenities", "anchor": "amenities" },
     { "label": "Plans", "anchor": "floor-plans" },
-    { "label": "Download Brochure", "anchor": "brochure" }
+    {
+      "label": "Download Brochure",
+      "href": "/assets/projects/brochure/saural-villa-corbett/brochure.pdf"
+    }
   ]
 }
