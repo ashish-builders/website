@@ -4,6 +4,8 @@ import { Figtree, Gilda_Display, Playfair } from 'next/font/google';
 import cssVariables from '@/lib/css-variables';
 import oklchToHex from '@/lib/color-manipulation/oklch-to-hext';
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import Box from '@mui/material/Box';
+import Script from 'next/script';
 import Providers from './providers';
 import './style.css';
 
@@ -36,6 +38,8 @@ export const metadata: Metadata = {
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props;
 
+  const pixelId = 794983580131507;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -57,8 +61,32 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         {typeof process.env.NEXT_PUBLIC_GA_ID === 'string' && process.env.NEXT_PUBLIC_GA_ID ? (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         ) : null}
+        <Script id="fb-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '${pixelId}');
+            fbq('track', 'PageView');
+          `}
+        </Script>
       </head>
       <body className={[primary.variable, saural.variable, secondary.variable].join(' ')}>
+        <noscript>
+          <Box
+            alt="Facebook Pixel"
+            component="img"
+            height="1"
+            src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
+            style={{ display: 'none' }}
+            width="1"
+          />
+        </noscript>
         <Providers>{children}</Providers>
       </body>
     </html>
