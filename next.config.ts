@@ -20,6 +20,13 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 7 * 24 * 60 * 60, // 7 Days
     remotePatterns: allowedRemotePatterns,
   },
+  turbopack: {
+    resolveAlias: {
+      '.cjs': ['.cts', '.cjs'],
+      '.js': ['.ts', '.tsx', '.js', '.jsx'],
+      '.mjs': ['.mts', '.mjs'],
+    },
+  },
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
       '.cjs': ['.cts', '.cjs'],
