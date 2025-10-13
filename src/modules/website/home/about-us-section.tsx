@@ -49,8 +49,8 @@ export function AboutUsSection() {
         }}
         subheader={
           <Fade delay={100}>
-            We craft exceptional homes by leveraging our in-house expertise and collaborating with
-            top industry professionals.
+            Building trust and transforming dreams into reality with quality homes that inspire
+            modern living.
           </Fade>
         }
         ariaLabel="Our Real Estate Services"

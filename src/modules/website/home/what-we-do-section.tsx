@@ -53,8 +53,8 @@ export function WhatWeDo() {
         }}
         subheader={
           <Fade delay={100}>
-            We craft exceptional homes by leveraging our in-house expertise and collaborating with
-            top industry professionals.
+            We create thoughtfully designed living spaces that blend innovation, quality, and
+            comfort to redefine modern living.
           </Fade>
         }
         ariaLabel="Our Real Estate Services"
