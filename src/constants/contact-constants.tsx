@@ -8,7 +8,7 @@ export const address = [streetAddress, addressLocality, addressRegion].join(
   ", "
 );
 export const phoneNumber = "+918057977777" as const;
-export const email = "info@ashishbuilders.com" as const;
+export const email = "sales@ashishbuilders.com" as const;
 
 export const geo = {
   latitude: 29.214432650899482,
