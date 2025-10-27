@@ -99,7 +99,7 @@ export function NavigationDrawer({ navigation, onClose, open }: NavigationDrawer
             </Box>
             <Box sx={{ alignItems: 'center', display: 'flex' }}>
               <EmailIcon aria-label="Email address" sx={{ mr: 1 }} />
-              <Typography variant="body2">info@ashishbuilders.com</Typography>
+              <Typography variant="body2">sales@ashishbuilders.com</Typography>
             </Box>
           </Box>
         )}
