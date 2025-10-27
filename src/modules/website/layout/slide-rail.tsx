@@ -22,8 +22,8 @@ const items: SlideRailItemProps[] = [
     anchor: 'right',
     'aria-label': 'Email Ashish Builders',
     children: (
-      <Link color="inherit" href="mailto:info@ashishbuilders.com" underline="none">
-        info@ashishbuilders.com
+      <Link color="inherit" href="mailto:sales@ashishbuilders.com" underline="none">
+        sales@ashishbuilders.com
       </Link>
     ),
     defaultWidth: 188,
