@@ -35,22 +35,22 @@ const contactDetails: {
     ],
   },
   {
-    href: 'mailto:info@ashishbuilders.com',
+    href: 'mailto:sales@ashishbuilders.com',
     icon: <EmailIcon sx={{ color: 'common.white' }} />,
     itemProp: 'email',
     label: 'Email',
     lines: [
       <Typography
-        aria-label="Email info@ashishbuilders.com"
+        aria-label="Email sales@ashishbuilders.com"
         color="text.secondary"
         component="a"
-        href="mailto:info@ashishbuilders.com"
+        href="mailto:sales@ashishbuilders.com"
         itemProp="email"
         key="email"
         rel="noopener noreferrer"
         sx={{ textDecoration: 'none' }}
       >
-        info@ashishbuilders.com
+        sales@ashishbuilders.com
       </Typography>,
     ],
   },
