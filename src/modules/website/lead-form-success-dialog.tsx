@@ -207,7 +207,7 @@ export function LeadFormSuccessDialog({ onClose, onExited, open }: LeadFormSucce
               itemProp="email"
             >
               <EmailIcon sx={{ fontSize: 18 }} />
-              <Typography variant="body2">info@ashishbuilders.com</Typography>
+              <Typography variant="body2">sales@ashishbuilders.com</Typography>
             </Box>
           </Box>
         </motion.div>
