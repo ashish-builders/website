@@ -19,44 +19,29 @@ import { Youtube } from '@/components/icons/youtube';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import PhoneInTalkOutlinedIcon from '@mui/icons-material/PhoneInTalkOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import PolicyOutlinedIcon from '@mui/icons-material/PolicyOutlined';
+import Link from 'next/link';
 
 const contactInfo = [
-  {
-    icon: <Facebook height={24} width={24} brandColor />,
-    name: 'Facebook',
-    type: 'social',
-    value: facebook,
-  },
-  {
-    icon: <TwitterX height={24} width={24} brandColor />,
-    name: 'X',
-    type: 'social',
-    value: x,
-  },
-  {
-    icon: <Instagram height={24} width={24} brandColor />,
-    name: 'Instagram',
-    type: 'social',
-    value: instagram,
-  },
-  {
-    icon: <Linkedin height={24} width={24} brandColor />,
-    name: 'LinkedIn',
-    type: 'social',
-    value: linkedin,
-  },
-  {
-    icon: <Youtube height={24} width={24} brandColor />,
-    name: 'Youtube',
-    type: 'social',
-    value: youtube,
-  },
+  // Social
+  { icon: <Facebook height={24} width={24} brandColor />, name: 'Facebook', type: 'social', value: facebook },
+  { icon: <TwitterX height={24} width={24} brandColor />, name: 'X', type: 'social', value: x },
+  { icon: <Instagram height={24} width={24} brandColor />, name: 'Instagram', type: 'social', value: instagram },
+  { icon: <Linkedin height={24} width={24} brandColor />, name: 'LinkedIn', type: 'social', value: linkedin },
+  { icon: <Youtube height={24} width={24} brandColor />, name: 'Youtube', type: 'social', value: youtube },
 
+  // Main row (ORDER MATTERS)
   {
     icon: <LocationOnOutlinedIcon fontSize="large" />,
     name: 'Address',
     type: 'default',
     value: address,
+  },
+  {
+    icon: null,
+    name: 'Privacy Policy',
+    type: 'default',
+    value: '/privacy-policy',
   },
   {
     icon: <PhoneInTalkOutlinedIcon fontSize="large" />,
@@ -72,57 +57,15 @@ const contactInfo = [
   },
 ];
 
-// Utility: get itemProp for schema.org
-const getItemProp = (name: string) => {
-  const lower = name.toLowerCase();
-  if (lower.includes('phone')) {
-    return 'telephone';
-  }
-  if (lower.includes('email')) {
-    return 'email';
-  }
-  if (lower.includes('address')) {
-    return 'address';
-  }
-  return undefined;
-};
-
-// Utility: is address
-const isAddress = (name: string) => name.toLowerCase().includes('address');
-
-// Utility: get link props for contact
-const getContactLinkProps = (
-  name: string,
-  itemProp: string | undefined,
-): React.AnchorHTMLAttributes<HTMLAnchorElement> & { itemProp?: string } => {
-  const props: React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-    itemProp?: string;
-  } = {};
-  if (itemProp) {
-    props.itemProp = itemProp;
-  }
-  if (isAddress(name)) {
-    props.target = '_blank';
-    props.rel = 'noopener noreferrer';
-  }
-  return props;
-};
-
 function getContactHref(name: string, value: string) {
-  if (name.toLowerCase().includes('phone')) {
-    return `tel:${value}`;
-  }
-  if (name.toLowerCase().includes('email')) {
-    return `mailto:${value}`;
-  }
+  if (name === 'Privacy Policy') return value;
+  if (name.toLowerCase().includes('phone')) return `tel:${value}`;
+  if (name.toLowerCase().includes('email')) return `mailto:${value}`;
   if (name.toLowerCase().includes('address')) {
-    // Encode the address for use in a Google Maps search URL
     const encoded = encodeURIComponent(`Ashish Builders & Developers, ${value}`);
     return `https://www.google.com/maps/search/?api=1&query=${encoded}`;
   }
-  if (value.startsWith('http')) {
-    return value;
-  }
+  if (value.startsWith('http')) return value;
   return undefined;
 }
 
@@ -130,7 +73,7 @@ export function Footer() {
   const grouped = groupBy(contactInfo, (item) => item.type);
 
   return (
-    <Box aria-label="Site footer" component="footer" sx={{ pb: 6, pt: 8 }}>
+    <Box component="footer" sx={{ pb: 6, pt: 8 }}>
       <Container maxWidth="lg">
         <Fade>
           <Box
@@ -141,51 +84,36 @@ export function Footer() {
               py: 4,
             }}
           >
+            {/* TOP ROW */}
             <Stack
-              alignItems="center"
               direction={{ lg: 'row', xs: 'column' }}
+              alignItems="center"
               justifyContent="space-between"
               spacing={4}
             >
-              {/* Contact Info */}
+              {/* Address | Privacy | Phone | Email */}
               <Stack
-                alignItems="center"
-                component="address"
                 direction={{ lg: 'row', xs: 'column' }}
-                itemType="https://schema.org/Organization"
-                spacing={2}
-                sx={{ fontSize: '0.875rem' }}
-                itemScope
+                spacing={3}
+                alignItems="center"
               >
                 {grouped.default?.map((item) => {
-                  const contactHref = getContactHref(item.name, item.value);
-                  const itemProp = getItemProp(item.name);
-                  const linkProps = getContactLinkProps(item.name, itemProp);
+                  const href = getContactHref(item.name, item.value);
+
                   return (
-                    <Stack
-                      alignItems="center"
-                      direction="row"
-                      key={item.name}
-                      spacing={1}
-                      textAlign={{ lg: 'left', xs: 'center' }}
-                    >
-                      {item.icon}
-                      <Typography
-                        component="span"
-                        fontWeight={500}
-                        sx={{ fontStyle: 'normal' }}
-                        textTransform="none"
-                        variant="body1"
-                        {...(itemProp ? { itemProp } : {})}
-                      >
-                        {contactHref ? (
-                          <a
-                            href={contactHref}
-                            style={{ color: 'inherit', textDecoration: 'none' }}
-                            {...linkProps}
-                          >
-                            {item.value}
-                          </a>
+                    <Stack key={item.name} direction="row" spacing={1} alignItems="center">
+                      {item.icon && item.icon}
+                       <Typography fontWeight={500} variant="body1">
+                        {href ? (
+                          item.name === 'Privacy Policy' ? (
+                            <Link href={href} style={{ color: 'inherit', textDecoration: 'none' }}>
+                              Privacy Policy
+                            </Link>
+                          ) : (
+                            <a href={href} style={{ color: 'inherit', textDecoration: 'none' }}>
+                              {item.value}
+                            </a>
+                          )
                         ) : (
                           item.value
                         )}
@@ -195,47 +123,33 @@ export function Footer() {
                 })}
               </Stack>
 
-              {/* Social Media Icons */}
-              {grouped.social && (
-                <Stack
-                  alignItems="center"
-                  aria-label="Social media links"
-                  direction="row"
-                  itemType="https://schema.org/Organization"
-                  role="navigation"
-                  spacing={1}
-                  itemScope
-                >
-                  {grouped.social.map((item) => (
-                    <IconButton
-                      sx={{
-                        border: 1,
-                        borderColor: 'common.black',
-                        borderRadius: '50%',
-                        fontSize: 14,
-                        fontWeight: 700,
-                        height: 40,
-                        transition: 'all 0.2s',
-                        width: 40,
-                      }}
-                      aria-label={item.name}
-                      component="a"
-                      href={item.value}
-                      itemProp="sameAs"
-                      key={item.name}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      {item.icon}
-                    </IconButton>
-                  ))}
-                </Stack>
-              )}
+              {/* Social Icons */}
+              <Stack direction="row" spacing={1}>
+                {grouped.social?.map((item) => (
+                  <IconButton
+                    key={item.name}
+                    component="a"
+                    href={item.value}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{
+                      border: 1,
+                      borderColor: 'common.black',
+                      width: 40,
+                      height: 40,
+                    }}
+                  >
+                    {item.icon}
+                  </IconButton>
+                ))}
+              </Stack>
             </Stack>
 
             <Divider sx={{ bgcolor: 'common.black', my: 3 }} />
-            <Typography align="center" color="textPrimary" fontWeight={500} variant="body1">
-              Copyright &copy; {new Date().getFullYear()} Ashish Builders, All rights reserved.
+
+            {/* COPYRIGHT */}
+            <Typography align="center" fontWeight={500}>
+              Copyright © {new Date().getFullYear()} Ashish Builders, All rights reserved.
             </Typography>
           </Box>
         </Fade>
@@ -243,3 +157,4 @@ export function Footer() {
     </Box>
   );
 }
+ 
