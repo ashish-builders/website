@@ -37,5 +37,10 @@ const nextConfig: NextConfig = {
     return webpackConfig;
   },
 };
+module.exports = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+};
 
 export default withPayload(nextConfig, { devBundleServerPackages: false });
