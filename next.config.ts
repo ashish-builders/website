@@ -1,8 +1,12 @@
-import { withPayload } from '@payloadcms/next/withPayload';
-import type { NextConfig } from 'next';
-import { allowedRemotePatterns } from './src/image';
+import { withPayload } from '@payloadcms/next/withPayload'
+import type { NextConfig } from 'next'
+import { allowedRemotePatterns } from './src/image'
 
 const nextConfig: NextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
   async headers() {
     return [
       {
@@ -14,12 +18,14 @@ const nextConfig: NextConfig = {
         ],
         source: '/prakash-nilayam-form.html',
       },
-    ];
+    ]
   },
+
   images: {
-    minimumCacheTTL: 7 * 24 * 60 * 60, // 7 Days
+    minimumCacheTTL: 7 * 24 * 60 * 60,
     remotePatterns: allowedRemotePatterns,
   },
+
   turbopack: {
     resolveAlias: {
       '.cjs': ['.cts', '.cjs'],
@@ -27,20 +33,16 @@ const nextConfig: NextConfig = {
       '.mjs': ['.mts', '.mjs'],
     },
   },
+
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
       '.cjs': ['.cts', '.cjs'],
       '.js': ['.ts', '.tsx', '.js', '.jsx'],
       '.mjs': ['.mts', '.mjs'],
-    };
+    }
 
-    return webpackConfig;
+    return webpackConfig
   },
-};
-module.exports = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-};
+}
 
-export default withPayload(nextConfig, { devBundleServerPackages: false });
+export default withPayload(nextConfig, { devBundleServerPackages: false })
