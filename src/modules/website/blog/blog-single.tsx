@@ -116,7 +116,7 @@ export function BlogSingle(props: BlogSingleProps) {
             <Image
               alt={featuredImage.alt || post.title}
               loading="eager"
-              src={decodeURIComponent(featuredImage.url)}
+              src={featuredImage.url}
               style={{ objectFit: 'cover' }}
               fill
               priority
