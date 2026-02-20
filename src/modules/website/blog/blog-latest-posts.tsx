@@ -123,7 +123,7 @@ export function BlogLatestPosts({ isLoading, posts }: BlogLatestPostsProps) {
                         height={120}
                         itemProp="image"
                         quality={100}
-                        src={post.featuredImage.url}
+                        src={decodeURIComponent(featuredImage.url)}
                         width={120}
                       />
                     </ListItemIcon>
