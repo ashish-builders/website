@@ -116,7 +116,7 @@ export function BlogLatestPosts({ isLoading, posts }: BlogLatestPostsProps) {
                         style={{
                           display: 'block',
                           height: 56,
-                          objectFit: 'cover',
+                          // objectFit: 'cover',
                           width: 56,
                         }}
                         alt={post.featuredImage.alt || `Featured image for ${post.title}`}

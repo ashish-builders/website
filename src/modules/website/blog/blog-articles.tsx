@@ -227,7 +227,9 @@ export function BlogArticles(props: BlogArticlesProps) {
                       aria-label={image?.alt ? image.alt : `Featured image for ${p.title}`}
                       itemProp="image"
                       src={image.url}
-                      style={{ display: 'block', objectFit: 'cover' }}
+                      style={{ display: 'block', 
+                        // objectFit: 'cover'
+                       }}
                       fill
                     />
                   </HoverScale>
