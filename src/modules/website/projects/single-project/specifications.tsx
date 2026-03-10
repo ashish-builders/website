@@ -86,7 +86,7 @@ export function Specification(props: SpecificationProps) {
                           quality={100}
                           sizes="100vw"
                           src={safePublicUrl}
-                          {/* sx={{ objectFit: 'cover' }} */}
+                          //sx={{ objectFit: 'cover' }} 
                           fill
                         />
                       </HoverScale>
