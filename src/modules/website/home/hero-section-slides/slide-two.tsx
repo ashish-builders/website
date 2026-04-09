@@ -105,7 +105,7 @@ export function SlideTwo() {
             component="p"
             fontWeight={500}
           >
-            ₹ 61.68 lacs onwards
+            ₹ 63.53 lacs onwards
           </Typography>
           <EnquireNowButton
             sx={{
